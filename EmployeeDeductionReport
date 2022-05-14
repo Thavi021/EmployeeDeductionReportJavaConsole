@@ -1,0 +1,205 @@
+package q1assignment;
+import java.util.Scanner;
+/**
+ *
+ * @author Thaveshan
+ */
+class details{
+    //private means restricted access
+    private int empID;
+    
+    private String empFirstname;
+    
+    private String empSurname;
+    
+    private double empSalary;
+    
+    private double updatedSalary;
+    
+    double Rate;
+    
+    
+    private double newSalary;
+    
+    
+    Scanner input = new Scanner(System.in);
+     //GETTERS AND SETTERS
+     //ID
+    public int getID()
+    {
+        return this.empID;
+    }
+    public void setID()
+    {
+        System.out.println("Please Enter the Employee ID Number>>");
+        empID = input.nextInt();
+        this.empID = empID;
+    }
+    
+    
+    //FIRSTNAME
+    public String getFirstname()
+    {
+        return this.empFirstname;
+    }
+    public void setFirstname()
+    {
+        Scanner firstName = new Scanner(System.in);
+        System.out.println("Please Enter the Employee First Name>>");
+        empFirstname = firstName.nextLine();
+        this.empFirstname = empFirstname;
+    }
+    
+    
+    //SURNAME
+    public String getSurname()
+    {
+        
+        return this.empSurname;
+    }
+    public void setSurname()
+    {
+        Scanner secondName = new Scanner(System.in);
+        System.out.println("Please Enter the Employee Surname>>");
+        empSurname = secondName.nextLine();
+        this.empSurname = empSurname;
+    }
+    
+    
+    //SALARY
+    public double getSalary()
+    {
+        
+        return this.empSalary;
+    }
+    public void setSalary()
+    {
+        Scanner salary = new Scanner(System.in);
+        System.out.println("Please Enter the Employee Salary>>");
+        empSalary = salary.nextDouble();
+        this.empSalary = empSalary;
+    }
+    
+    
+    //UPDATED SALARY
+    public double getUpdatedSalary()
+    {
+        return this.updatedSalary;
+    }
+    public void setUpdatedSalary()
+    {
+        Rate = empSalary*0.10;
+        
+
+        updatedSalary = empSalary+Rate;
+        this.updatedSalary = updatedSalary;
+    }
+    
+    //SALARY
+    public double getNewSalary()
+    {
+        
+        return this.newSalary;
+    }
+    public void setNewSalary()
+    {
+        Scanner increasedSalary = new Scanner(System.in);
+        System.out.println("Please Enter the Employee Increased Salary>>");
+        newSalary = increasedSalary.nextDouble();
+        this.newSalary = newSalary;
+        
+    }
+    
+}     
+public class display{    
+//    Tax percentages 
+    double TAX = 0.18;
+    double medical = 0.125;
+    double carAllowance = 0.08;
+    double UIF = 0.02;
+    
+    public static void main(String[] args) {
+        
+        
+        System.out.println("Welcome!");
+        
+        display a = new display();
+        
+        a.printDetails();
+        
+        int code;
+        
+        Scanner console = new Scanner(System.in);
+        
+        System.out.println("Would you like to see the increased salary with deductions? Enter (1) to view the deduction report or any other key to exit." );
+        code = console.nextInt();
+        if(code==1)
+        {    
+        
+        display b = new display();
+        
+        
+        b.salaryDeductions();
+        }
+        else
+        {
+            System.out.println("Good Bye!");
+        }
+    }
+    
+    
+    
+    //EMPLOYEE DETAILS REPORT
+    public static void printDetails()
+    {
+        details d = new details();
+        
+        d.setID();
+        d.setFirstname();
+        d.setSurname();
+        d.setSalary();
+        System.out.println("Emplyee Details Report ");
+        System.out.println("***********************");
+        
+        System.out.println("Employee Number:       "+ d.getID());
+        
+        System.out.println("Employee First Name:   "+ d.getFirstname());
+        
+        System.out.println("Employee Surname:      "+ d.getSurname());
+        
+        System.out.println("Original Salary        R"+ d.getSalary());
+        
+        d.setUpdatedSalary();
+        System.out.println("Increased Salary       R"+ d.getUpdatedSalary());
+        System.out.println("Increase Amount        R"+ d.Rate);
+        System.out.println("***********************");
+    } 
+         
+    
+    //EMPLOYEE DEDUCTION REPORT
+    public static void salaryDeductions()
+    {
+        details d = new details();
+        d.setNewSalary();
+        System.out.println("Emplyee Deduction Report ");
+        System.out.println("***********************");
+        
+        
+        
+        System.out.println("Employee Salary:       R"+ d.getNewSalary());
+        display b = new display();
+        System.out.println("TAX:                   R"+ d.getNewSalary()*b.TAX);
+        System.out.println("Medical AID:           R"+ d.getNewSalary()*b.medical);
+        System.out.println("Car Allowance:         R"+ d.getNewSalary()*b.carAllowance);
+        System.out.println("UIF:                   R"+ d.getNewSalary()*b.UIF);
+        
+        
+        double takeHomePay = d.getNewSalary()-((d.getNewSalary()*b.TAX) + (d.getNewSalary()*b.medical) + (d.getNewSalary()*b.carAllowance) + (d.getNewSalary()*b.UIF));
+        
+        
+        System.out.println("Take Home Pay:         R"+ takeHomePay);
+        System.out.println("***********************");
+         
+        
+    }
+}
